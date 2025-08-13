@@ -310,6 +310,44 @@ npm run format
 npm run type-check
 ```
 
+### MCP Inspector
+
+The MCP Inspector is a powerful debugging tool that allows you to test and interact with your MCP server directly. It provides a web-based interface to:
+
+- Test MCP tools with custom parameters
+- View available resources and prompts
+- Monitor server responses and errors
+- Validate MCP protocol compliance
+
+#### Running the MCP Inspector
+
+```bash
+# Build the project first
+npm run build
+
+# Start the MCP Inspector
+npm run inspector
+
+# Or run directly with npx
+npx @modelcontextprotocol/inspector dist/index.js
+```
+
+This will start a web interface (typically at `http://localhost:5173`) where you can:
+
+1. **Test Tools**: Call any registered tool (login, add_items, set_address, checkout) with custom parameters
+2. **View Resources**: Access health check and session information resources
+3. **Test Prompts**: Try the quick_order and reorder prompts with different parameters
+4. **Debug Issues**: See detailed request/response logs and error messages
+
+#### Inspector Usage Tips
+
+- **Environment Setup**: Ensure Redis and n8n are running before testing tools
+- **Tool Testing**: Start with the login tool to establish a session, then test other tools
+- **Error Debugging**: Check the inspector console for detailed error messages
+- **Schema Validation**: The inspector validates input schemas automatically
+
+The inspector is essential for development and debugging, allowing you to test the MCP server independently of Claude Code integration.
+
 ## 🚀 Deployment
 
 ### Production Deployment
