@@ -263,11 +263,21 @@ export class N8nService {
     restaurantName: string,
     items: any[]
   ): Promise<N8nWebhookResponse> {
+    // Ensure sessionId is included in sessionData for Playwright script
+    const enhancedSessionData = {
+      ...sessionData,
+      sessionId: sessionId,
+    };
+    
+    // Use snake_case for n8n webhook compatibility
     const payload: N8nWebhookPayload = {
-      sessionId,
-      sessionData,
-      restaurantName,
-      items,
+      sessionId: sessionId,
+      session_id: sessionId,
+      sessionData: enhancedSessionData,
+      session_data: enhancedSessionData,
+      restaurantName: restaurantName,
+      restaurant_name: restaurantName,
+      items: items,
       timestamp: new Date().toISOString(),
     };
 
@@ -282,10 +292,19 @@ export class N8nService {
     sessionData: any,
     address: any
   ): Promise<N8nWebhookResponse> {
+    // Ensure sessionId is included in sessionData for Playwright script
+    const enhancedSessionData = {
+      ...sessionData,
+      sessionId: sessionId,
+    };
+    
+    // Use snake_case for n8n webhook compatibility
     const payload: N8nWebhookPayload = {
-      sessionId,
-      sessionData,
-      address,
+      sessionId: sessionId,
+      session_id: sessionId,
+      sessionData: enhancedSessionData,
+      session_data: enhancedSessionData,
+      address: address,
       timestamp: new Date().toISOString(),
     };
 
@@ -301,11 +320,22 @@ export class N8nService {
     paymentMethodId?: string,
     tipAmount?: number
   ): Promise<N8nWebhookResponse> {
+    // Ensure sessionId is included in sessionData for Playwright script
+    const enhancedSessionData = {
+      ...sessionData,
+      sessionId: sessionId,
+    };
+    
+    // Use snake_case for n8n webhook compatibility
     const payload: N8nWebhookPayload = {
-      sessionId,
-      sessionData,
-      paymentMethodId,
-      tipAmount,
+      sessionId: sessionId,
+      session_id: sessionId,
+      sessionData: enhancedSessionData,
+      session_data: enhancedSessionData,
+      paymentMethodId: paymentMethodId,
+      payment_method_id: paymentMethodId,
+      tipAmount: tipAmount,
+      tip_amount: tipAmount,
       timestamp: new Date().toISOString(),
     };
 

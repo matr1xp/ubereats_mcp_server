@@ -61,6 +61,7 @@ export async function loginHandler(args: unknown): Promise<any> {
           tokens: n8nResponse.tokens || {},
           sessionStorage: n8nResponse.sessionStorage || {},
           localStorage: n8nResponse.localStorage || {},
+          storageState: n8nResponse.storageState,
           loginCompletedAt: new Date(),
         });
 
@@ -166,6 +167,7 @@ export async function completeLoginHandler(args: unknown): Promise<any> {
         tokens: n8nResponse.tokens || {},
         sessionStorage: n8nResponse.sessionStorage || {},
         localStorage: n8nResponse.localStorage || {},
+        storageState: n8nResponse.storageState,
         loginCompletedAt: new Date(),
       });
 

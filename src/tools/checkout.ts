@@ -43,6 +43,7 @@ export async function checkoutHandler(args: unknown): Promise<any> {
         tokens: session.tokens,
         sessionStorage: session.sessionStorage,
         localStorage: session.localStorage,
+        storageState: session.storageState,
       },
       input.paymentMethodId,
       input.tipAmount

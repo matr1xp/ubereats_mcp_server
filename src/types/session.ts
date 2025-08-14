@@ -27,6 +27,7 @@ export interface SessionData {
   };
   sessionStorage: Record<string, any>;
   localStorage: Record<string, any>;
+  storageState?: any; // Complete Playwright storage state
   metadata?: {
     userAgent?: string;
     ipAddress?: string;
@@ -47,6 +48,7 @@ export interface SessionUpdateOptions {
   tokens?: SessionData['tokens'];
   sessionStorage?: Record<string, any>;
   localStorage?: Record<string, any>;
+  storageState?: any;
   loginCompletedAt?: Date;
 }
 

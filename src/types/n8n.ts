@@ -21,6 +21,7 @@ export interface N8nWebhookResponse {
   };
   sessionStorage?: Record<string, any>;
   localStorage?: Record<string, any>;
+  storageState?: any; // Complete Playwright storage state
   cartTotal?: string;
   orderConfirmationNumber?: string;
   estimatedDeliveryTime?: string;

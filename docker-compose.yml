@@ -5,7 +5,7 @@ services:
     image: redis:7-alpine
     container_name: ubereats-redis
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis-data:/data
     command: redis-server --appendonly yes
@@ -23,13 +23,13 @@ services:
       dockerfile: Dockerfile
     container_name: ubereats-mcp-server
     ports:
-      - "5001:5001"
+      - "5000:5000"
       - "9090:9090"  # Metrics port
     environment:
       - NODE_ENV=production
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - N8N_BASE_URL=${N8N_BASE_URL:-http://n8n:5678}
+      - N8N_BASE_URL=${N8N_BASE_URL:-http://localhost:5678}
       - JWT_SECRET=${JWT_SECRET}
       - SESSION_SECRET=${SESSION_SECRET}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}
@@ -49,32 +49,8 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Optional: n8n service
-  n8n:
-    image: n8nio/n8n:latest
-    container_name: ubereats-n8n
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
-      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD:-admin}
-      - N8N_HOST=0.0.0.0
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - NODE_ENV=production
-      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678}
-    volumes:
-      - n8n-data:/home/node/.n8n
-      - ./n8n_workflows:/workflows
-    networks:
-      - ubereats-network
-    restart: unless-stopped
-
 volumes:
   redis-data:
-    driver: local
-  n8n-data:
     driver: local
 
 networks:
